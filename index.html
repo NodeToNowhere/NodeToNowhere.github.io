@@ -45,23 +45,53 @@
         transform: translate(-50%, -50%);
         width: 0;
         height: 0;
-        background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.fE1ZAeWTQQ05nzhEjVtQqgHaHa%26pid%3DApi&f=1&ipt=af949b82c895e83da9aabf6ae5b42de26600714988b2c247beb6b43cc1652f26&ipo=images');
+        background-image: url('https://tinyurl.com/2w22mr49');
         background-size: cover;
         z-index: 0;
+      }
+
+      #counter {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        padding: 10px;
+        transform: translateX(-50%);
+        text-align: center;
+        padding: 10px;
+        font-size: 1.5em;
+        z-index: 1;
       }
     </style>
   </head>
   <body>
     <button id="click-me">Click Me</button>
     <div id="image"></div>
+    <div id="counter"></div>
     <script>
       let size = 0;
+      let counter = 0;
       const button = document.getElementById('click-me');
       const image = document.getElementById('image');
+      const counterDiv = document.getElementById('counter');
       button.addEventListener('click', function () {
-        size += 25;
+        if (size === 0) {
+          size = 25;
+        } else {
+          size = size * 1.4;
+        }
         image.style.width = size + 'px';
         image.style.height = size + 'px';
+        if (window.innerHeight < image.offsetHeight) {
+          size = 0;
+          image.style.width = size + 'px';
+          image.style.height = size + 'px';
+          counter++;
+          if (counter === 1) {
+            counterDiv.innerHTML = `You've been Peekad: ${counter} Time`;
+          } else {
+            counterDiv.innerHTML = `You've been Peekad: ${counter} Times`;
+          }
+        }
       });
     </script>
   </body>
