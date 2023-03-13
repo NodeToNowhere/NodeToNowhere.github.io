@@ -110,11 +110,21 @@
           image.style.width = size + 'px';
           image.style.height = size + 'px';
           counter++;
+          gtag('event', 'button_click', {
+            event_category: 'engagement',
+            event_label: 'click_me_button',
+            value: 1,
+          });
           if (counter === 1) {
             counterDiv.innerHTML = `You've been Peekad: ${counter} Time`;
           } else {
             counterDiv.innerHTML = `You've been Peekad: ${counter} Times`;
           }
+          gtag('event', 'peekad', {
+            event_category: 'engagement',
+            event_label: 'peekad',
+            value: counter,
+          });
         }
       });
     </script>
