@@ -1,6 +1,7 @@
 <html>
   <head>
     <style>
+      /* Dark mode styles */
       body {
         background-color: #333;
         color: #fff;
@@ -10,30 +11,45 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
+        position: relative;
       }
 
       button {
-        background-color: #fff;
-        color: #333;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
+        background-color: transparent;
+        border: 2px solid #fff;
+        color: #fff;
+        padding: 20px 40px;
+        border-radius: 10px;
         cursor: pointer;
-        margin-top: 20px;
+        z-index: 1;
+        font-size: 2em;
+      }
+
+      #image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.fE1ZAeWTQQ05nzhEjVtQqgHaHa%26pid%3DApi&f=1&ipt=af949b82c895e83da9aabf6ae5b42de26600714988b2c247beb6b43cc1652f26&ipo=images');
+        background-size: cover;
+        z-index: 0;
       }
     </style>
   </head>
   <body>
-    <h1>Clicker Counter</h1>
-    <p id="counter">0</p>
     <button id="click-me">Click Me</button>
+    <div id="image"></div>
     <script>
-      let counter = 0;
-      const counterDisplay = document.getElementById('counter');
+      // Image size implementation
+      let size = 0;
       const button = document.getElementById('click-me');
+      const image = document.getElementById('image');
       button.addEventListener('click', function () {
-        counter++;
-        counterDisplay.innerHTML = counter;
+        size += 25;
+        image.style.width = size + 'px';
+        image.style.height = size + 'px';
       });
     </script>
   </body>
